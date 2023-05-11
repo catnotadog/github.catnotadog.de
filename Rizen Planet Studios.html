@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://rizenplanet.com/droneboi.html -->
+<html lang="en"><script type="text/javascript">
+    var spector;
+    var captureOnLoad = false;
+    var captureOffScreen = false;
+    window.__SPECTOR_Canvases = [];
+
+    (function() {
+        var __SPECTOR_Origin_EXTENSION_GetContext = HTMLCanvasElement.prototype.getContext;
+        HTMLCanvasElement.prototype.__SPECTOR_Origin_EXTENSION_GetContext = __SPECTOR_Origin_EXTENSION_GetContext;
+
+        if (typeof OffscreenCanvas !== 'undefined') {
+            var __SPECTOR_Origin_EXTENSION_OffscreenGetContext = OffscreenCanvas.prototype.getContext;
+            OffscreenCanvas.prototype.__SPECTOR_Origin_EXTENSION_OffscreenGetContext = __SPECTOR_Origin_EXTENSION_OffscreenGetContext;
+
+            OffscreenCanvas.prototype.getContext = function () {
+                var context = null;
+                if (!arguments.length) {
+                    return context;
+                }
+    
+                if (arguments.length === 1) {
+                    context = this.__SPECTOR_Origin_EXTENSION_OffscreenGetContext(arguments[0]);
+                    if (context === null) {
+                        return context;
+                    }
+                }
+                else if (arguments.length === 2) {
+                    context = this.__SPECTOR_Origin_EXTENSION_OffscreenGetContext(arguments[0], arguments[1]);
+                    if (context === null) {
+                        return context;
+                    }
+                }
+    
+                var contextNames = ["webgl", "experimental-webgl", "webgl2", "experimental-webgl2"];
+                if (contextNames.indexOf(arguments[0]) !== -1) {
+                    // context.canvas.setAttribute("__spector_context_type", arguments[0]);
+                    // Notify the page a canvas is available.
+                    var myEvent = new CustomEvent("SpectorWebGLCanvasAvailableEvent");
+                    document.dispatchEvent(myEvent);
+                    this.id = "Offscreen";
+                    window.__SPECTOR_Canvases.push(this);
+    
+                    if (captureOnLoad) {
+                        // Ensures canvas is in the dom to capture the one we are currently tracking.
+                        if (false) {
+                            spector.captureContext(context, 500, false, false);
+                            captureOnLoad = false;
+                        }
+                    }
+                }
+    
+                return context;
+            }
+        }
+
+        HTMLCanvasElement.prototype.getContext = function () {
+            var context = null;
+            if (!arguments.length) {
+                return context;
+            }
+
+            if (arguments.length === 1) {
+                context = this.__SPECTOR_Origin_EXTENSION_GetContext(arguments[0]);
+                if (context === null) {
+                    return context;
+                }
+            }
+            else if (arguments.length === 2) {
+                context = this.__SPECTOR_Origin_EXTENSION_GetContext(arguments[0], arguments[1]);
+                if (context === null) {
+                    return context;
+                }
+            }
+
+            var contextNames = ["webgl", "experimental-webgl", "webgl2", "experimental-webgl2"];
+            if (contextNames.indexOf(arguments[0]) !== -1) {
+                context.canvas.setAttribute("__spector_context_type", arguments[0]);
+                // Notify the page a canvas is available.
+                var myEvent = new CustomEvent("SpectorWebGLCanvasAvailableEvent");
+                document.dispatchEvent(myEvent);
+
+                if (captureOffScreen) {
+                    var found = false;
+                    for (var i = 0; i < window.__SPECTOR_Canvases.length; i++) {
+                        if (window.__SPECTOR_Canvases[i] === this) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        window.__SPECTOR_Canvases.push(this);
+                    }
+                }
+
+                if (captureOnLoad) {
+                    // Ensures canvas is in the dom to capture the one we are currently tracking.
+                    if (this.parentElement || false) {
+                        spector.captureContext(context, 500, false, false);
+                        captureOnLoad = false;
+                    }
+                }
+            }
+
+            return context;
+        }
+    })()</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Rizen Planet Studios</title>
+    <meta name="description" content="An independent indie game development studios based in the Netherlands,
+and the creator of the mobile space game series: Droneboi">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://rizenplanet.com/assets/img/logo.png">
+    <link rel="stylesheet" href="./Rizen Planet Studios_files/bootstrap.min.css">
+    <link rel="stylesheet" href="./Rizen Planet Studios_files/css">
+    <link rel="stylesheet" href="./Rizen Planet Studios_files/animate.min.css">
+<p id="webgl_ripper_settings" hidden="">{"default_texture_res":"4096x4096","do_shader_calc":false,"is_debug_mode":false,"should_download_zip":false,"unflip_textures":true}</p></head>
+
+<body style="background: linear-gradient(black, #020c16), rgb(0,0,0);"><a href="https://rizenplanet.com/index.html"><img class="d-flex mx-auto" data-bss-hover-animate="rubberBand" src="./Rizen Planet Studios_files/droneboi.png" width="64" style="text-align: center;margin-top: 15px;"></a>
+    <nav class="navbar navbar-dark navbar-expand-md">
+        <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="https://rizenplanet.com/index.html" style="font-family: &#39;Roboto Condensed&#39;, sans-serif;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="https://rizenplanet.com/droneboi.html" style="font-family: &#39;Roboto Condensed&#39;, sans-serif;">Droneboi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://rizenplanet.com/contact.html" style="font-family: &#39;Roboto Condensed&#39;, sans-serif;">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="py-4 py-xl-5" style="background: repeating-linear-gradient(90deg, rgb(156,201,252), #0c243c), rgb(255,218,47);">
+        <div class="container">
+            <div class="text-center p-4 p-lg-5" style="border-color: rgb(255,55,55);">
+                <h1 class="fw-bold mb-4" style="font-family: &#39;Roboto Condensed&#39;, sans-serif;color: rgb(0,0,0);">Droneboi 2</h1>
+                <p class="fw-bold mb-2" style="font-family: &#39;Roboto Condensed&#39;, sans-serif;color: rgb(0,0,0);">Build, pilot, and conquer in Droneboi 2 - the ultimate space sandbox game!</p>
+            </div>
+        </div>
+    </section>
+    <div class="row d-flex m-auto" style="width: 1000px;padding-top: 48px;">
+        <div class="col" style="padding: 0px;"><a class="btn d-flex m-auto" role="button" href="https://play.google.com/store/apps/details?id=com.RizenPlanetStudios.Droneboi2" style="padding: 0px;"><img class="d-flex m-auto" src="./Rizen Planet Studios_files/google play.png" height="46px" style="border-radius: 10px;border: 2px solid #9CC9FC;"></a></div>
+        <div class="col" style="padding: 0px;"><a class="btn d-flex m-auto" role="button" href="https://apps.apple.com/us/app/droneboi-2/id1639186958" style="padding: 0px;"><img class="d-flex m-auto" src="./Rizen Planet Studios_files/app store.svg" height="46px" style="border-radius: 10px;border: 2px solid #9CC9FC;"></a></div>
+        <div class="col"><a class="btn btn-primary d-flex m-auto" role="button" style="padding: 10px;font-family: &#39;Roboto Condensed&#39;, sans-serif;background: rgb(0,0,0);width: 150px;border-radius: 10px;border: 2px solid #9CC9FC;" href="https://store.steampowered.com/app/2112360/Droneboi_2/">Download on Steam</a></div>
+        <div class="col"><a class="btn btn-primary d-flex m-auto" role="button" style="padding: 10px;font-family: &#39;Roboto Condensed&#39;, sans-serif;background: rgb(0,0,0);width: 146px;border-radius: 10px;border: 2px solid #9CC9FC;" href="https://droneboi.io/">Play on droneboi.io</a></div>
+        <div class="col"><a class="btn btn-primary d-flex m-auto" role="button" style="padding: 10px;font-family: &#39;Roboto Condensed&#39;, sans-serif;background: rgb(0,0,0);width: 142px;border-radius: 10px;border: 2px solid #9CC9FC;" href="https://discord.com/invite/9S6PG9DgDm">Join us on Discord</a></div>
+    </div>
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-4 gy-md-0">
+            <div class="col-md-6"><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="./Rizen Planet Studios_files/unnamed.png"></div>
+            <div class="col-md-6 d-md-flex align-items-md-center">
+                <div style="max-width: 350px;">
+                    <h2 class="fw-bold" style="color: rgb(255,255,255);font-family: &#39;Roboto Condensed&#39;, sans-serif;">Run into asteroids</h2>
+                    <p class="my-3" style="color: rgb(255,255,255);font-family: &#39;Roboto Condensed&#39;, sans-serif;">ow<br><br></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-4 gy-md-0">
+            <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+                <div style="max-width: 350px;">
+                    <h2 class="fw-bold" style="color: rgb(255,255,255);font-family: &#39;Roboto Condensed&#39;, sans-serif;">Make shitbricks</h2>
+                    <p class="my-3" style="color: rgb(255,255,255);font-family: &#39;Roboto Condensed&#39;, sans-serif;">lets be real there's a 99% chance you can't build worth shit</p>
+                </div>
+            </div>
+            <div class="col-md-6"><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="./Rizen Planet Studios_files/unnamed(1).png"></div>
+        </div>
+    </div>
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-4 gy-md-0">
+            <div class="col-md-6"><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="./Rizen Planet Studios_files/unnamed(2).png"></div>
+            <div class="col-md-6 d-md-flex align-items-md-center">
+                <div style="max-width: 350px;">
+                    <h2 class="fw-bold" style="color: rgb(255,255,255);font-family: &#39;Roboto Condensed&#39;, sans-serif;">Engage in battles (and be completely destroyed on the opponents screen when you're completely fine)</h2>
+                    <p class="my-3" style="color: rgb(255,255,255);font-family: &#39;Roboto Condensed&#39;, sans-serif;">because beau doesn't sync destruction</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-4 gy-md-0">
+            <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+                <div style="max-width: 350px;">
+                    <h2 class="fw-bold" style="color: rgb(255,255,255);font-family: &#39;Roboto Condensed&#39;, sans-serif;">Collect rare components</h2>
+                    <p class="my-3" style="color: rgb(255,255,255);font-family: &#39;Roboto Condensed&#39;, sans-serif;">jk they don't exist lol, nothing is rare</p>
+                </div>
+            </div>
+            <div class="col-md-6"><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="./Rizen Planet Studios_files/unnamed(3).png"></div>
+        </div>
+    </div>
+    <script src="./Rizen Planet Studios_files/bootstrap.min.js.download"></script>
+    <script src="./Rizen Planet Studios_files/bs-init.js.download"></script>
+    <script src="./Rizen Planet Studios_files/Video-Parallax-Background-v2-multiple-parallax.js.download"></script>
+    <script src="./Rizen Planet Studios_files/Video-Parallax-Background-v3-Parallax-Video-Background.js.download"></script>
+
+
+</body></html>
